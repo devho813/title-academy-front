@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Home() {
-  return <Title>제목학원 로그인 페이지</Title>;
+  return <Title>메인 페이지</Title>;
 }
 
 export default Home;
