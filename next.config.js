@@ -9,6 +9,16 @@ const withImages = require('next-images');
 
 module.exports = withBundleAnalyzer(
   withImages({
+    exportTrailingSlash: true,
+    exportPathMap: async function (
+      defaultPathMap,
+      { dev, dir, outDir, distDir, buildId }
+    ) {
+      return {
+        '/': { page: '/' },
+        '/signin': { page: '/signin' },
+      }
+    },
     webpack: function (config) {
       const originalEntry = config.entry;
 
