@@ -45,5 +45,6 @@ const MainCharacterContainer = styled.div`
     width: 50%;
     height: auto;
     border-radius: 50%;
+    user-select: none;
   }
 `;

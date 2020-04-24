@@ -9,15 +9,14 @@ export const textEllipsis = css`
 
 const GlobalStyles = createGlobalStyle`
   ${reset}
-  * {
+  *, *:before, *:after {
     box-sizing: border-box;
   }
   html{
-    /* mobile */
     font-size: 16px;
   }
   body{
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-family: 'Roboto', sans-serif;
     overflow: hidden;
   }
   html, body, #__next{

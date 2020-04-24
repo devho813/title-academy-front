@@ -12,6 +12,7 @@ function MyApp({ Component, propTypes }: any) {
         <meta name="description" content="제목학원 커뮤니티 사이트" />
         <meta name="author" content="Chanho Lee <devho813@gmail.com>" />
         <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
       </Head>
       <GlobalStyles />
       <Component {...propTypes} />
