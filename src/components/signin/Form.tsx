@@ -10,9 +10,12 @@ function Form() {
   return (
     <FormContainer onSubmit={onSubmit}>
       <label htmlFor="email">Email</label>
-      <input id="email" type="email" />
-      <label htmlFor="password">Password</label>
-      <input id="password" type="password" />
+      <input id="email" type="email" autoComplete="off" required={true} />
+      <label htmlFor="password">
+        <span>Password</span>
+        <ForgotPassword>Forgot password?</ForgotPassword>
+      </label>
+      <input id="password" type="password" required={true} />
       <button>Sign In</button>
     </FormContainer>
   );
@@ -24,9 +27,10 @@ const FormContainer = styled.form`
   width: 100%;
 
   label {
-    display: inline-block;
+    position: relative;
+    display: block;
     font-size: 1rem;
-    margin: 0.5em 0;
+    margin: 1.2em 0 0.5em;
   }
 
   input {
@@ -38,7 +42,7 @@ const FormContainer = styled.form`
     border: 0.8px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 
-    &:hover {
+    &:focus {
       border: 0.8px solid #579ecf;
     }
   }
@@ -55,4 +59,13 @@ const FormContainer = styled.form`
     border-radius: 5px;
     cursor: pointer;
   }
+`;
+
+const ForgotPassword = styled.a`
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
 `;
