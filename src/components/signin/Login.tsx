@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Form from './Form';
+import Link from 'next/link';
 
 function Login() {
   return (
@@ -13,7 +14,10 @@ function Login() {
         </MainCharacterContainer>
         <h2>
           <span>Sign In</span>
-          <a>Create Account</a>
+          {/* TODO: path 마지막 / 제거시 오류 이슈 수정하기 */}
+          <Link href="/signup/">
+            <a>Create Account</a>
+          </Link>
         </h2>
         <Form />
       </LoginWrapper>

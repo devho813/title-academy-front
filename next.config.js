@@ -17,6 +17,7 @@ module.exports = withBundleAnalyzer(
       return {
         '/': { page: '/' },
         '/signin': { page: '/signin' },
+        '/signup': { page: '/signup' },
       }
     },
     webpack: function (config) {
