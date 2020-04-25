@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Form from './Form';
 
 function Register() {
   return (
     <RegisterContainer>
       <RegisterWrapper>
         <h2>Sign Up</h2>
-        {/* <Form /> */}
+        <Form />
       </RegisterWrapper>
     </RegisterContainer>
   );

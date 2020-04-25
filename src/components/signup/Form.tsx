@@ -4,19 +4,22 @@ import styled from 'styled-components';
 function Form() {
   const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('로그인 버튼 클릭');
+    console.log('회원가입 버튼 클릭');
   }, []);
 
   return (
     <FormContainer onSubmit={onSubmit}>
       <label htmlFor="email">Email</label>
       <input id="email" type="email" autoComplete="off" required={true} />
-      <label htmlFor="password">
-        <span>Password</span>
-        <ForgotPassword>Forgot password?</ForgotPassword>
-      </label>
+      <label htmlFor="nickname">Nickname</label>
+      <input id="nickname" type="text" autoComplete="off" required={true} />
+      <label htmlFor="password">Password</label>
       <input id="password" type="password" required={true} />
-      <button>Sign In</button>
+      <fieldset>
+        <input type="checkbox" id="signupEulaAgreement" required={true} />
+        <label htmlFor="signupEulaAgreement">Agree to the End User License Agreement and the Privacy Policy.</label>
+      </fieldset>
+      <button>Create an Account</button>
     </FormContainer>
   );
 }
@@ -59,13 +62,31 @@ const FormContainer = styled.form`
     border-radius: 5px;
     cursor: pointer;
   }
-`;
 
-const ForgotPassword = styled.a`
-  position: absolute;
-  right: 0;
-  top: 0;
-  font-size: 0.9rem;
-  text-decoration: underline;
-  cursor: pointer;
+  fieldset {
+    margin: 1.5rem 0 1rem 0;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+
+    input {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      width: 10%;
+      cursor: pointer;
+    }
+
+    label {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      width: 90%;
+      vertical-align: middle;
+      font-weight: lighter;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      cursor: pointer;
+    }
+  }
 `;
