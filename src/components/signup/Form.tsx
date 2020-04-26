@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
+import { GrFacebook, GrGoogle } from 'react-icons/gr';
 
 function Form() {
   const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -19,6 +21,18 @@ function Form() {
         <input type="checkbox" id="signupEulaAgreement" required={true} />
         <label htmlFor="signupEulaAgreement">Agree to the End User License Agreement and the Privacy Policy.</label>
       </fieldset>
+      <Link href="">
+        <Facebook>
+          <GrFacebook />
+          <OauthLogin>Continue with Facebook</OauthLogin>
+        </Facebook>
+      </Link>
+      <Link href="">
+        <Google>
+          <GrGoogle />
+          <OauthLogin>Continue with Google</OauthLogin>
+        </Google>
+      </Link>
       <button>Create an Account</button>
     </FormContainer>
   );
@@ -89,4 +103,35 @@ const FormContainer = styled.form`
       cursor: pointer;
     }
   }
+`;
+
+const Facebook = styled.a`
+  display: block;
+  margin: 1.5rem 0 0.7rem;
+  padding: 0.5rem 0;
+  background: #fff;
+  color: #505f79;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 5px 0;
+  border-radius: 3px;
+  border-color: transparent;
+  text-align: center;
+  cursor: pointer;
+`;
+
+const Google = styled.a`
+  display: block;
+  padding: 0.5em 0;
+  background: #fff;
+  color: #505f79;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 5px 0;
+  border-radius: 3px;
+  border-color: transparent;
+  text-align: center;
+  cursor: pointer;
+`;
+
+const OauthLogin = styled.span`
+  display: inline-block;
+  margin-left: 0.5em;
+  vertical-align: text-top;
 `;

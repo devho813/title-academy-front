@@ -32,7 +32,7 @@ const LoginContainer = styled.section`
 `;
 
 const LoginWrapper = styled.div`
-  max-width: 480px;
+  width: 480px;
   margin: 0 auto;
   padding: 2.5rem;
   border-radius: 10px;

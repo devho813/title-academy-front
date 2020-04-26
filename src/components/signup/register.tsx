@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import Form from './Form';
+import Link from 'next/link';
 
 function Register() {
   return (
     <RegisterContainer>
       <RegisterWrapper>
-        <h2>Sign Up</h2>
+        <h2>
+          <span>Sign Up</span>
+          <Link href="/signin/">
+            <a>or, Login</a>
+          </Link>
+        </h2>
         <Form />
       </RegisterWrapper>
     </RegisterContainer>
@@ -20,7 +26,7 @@ const RegisterContainer = styled.section`
 `;
 
 const RegisterWrapper = styled.div`
-  max-width: 480px;
+  width: 480px;
   margin: 0 auto;
   padding: 2.5rem;
   border-radius: 10px;
@@ -36,5 +42,14 @@ const RegisterWrapper = styled.div`
     padding-bottom: 1em;
     font-size: 1.5rem;
     border-bottom: 1px solid #e8e8e8;
+
+    a {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 0.9rem;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 `;

@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
+import { GrFacebook, GrGoogle } from 'react-icons/gr';
 
 function Form() {
   const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -16,6 +18,20 @@ function Form() {
         <ForgotPassword>Forgot password?</ForgotPassword>
       </label>
       <input id="password" type="password" required={true} />
+      <fieldset>
+        <Link href="">
+          <Facebook>
+            <GrFacebook />
+            <OauthLogin>Continue with Facebook</OauthLogin>
+          </Facebook>
+        </Link>
+        <Link href="">
+          <Google>
+            <GrGoogle />
+            <OauthLogin>Continue with Google</OauthLogin>
+          </Google>
+        </Link>
+      </fieldset>
       <button>Sign In</button>
     </FormContainer>
   );
@@ -68,4 +84,35 @@ const ForgotPassword = styled.a`
   font-size: 0.9rem;
   text-decoration: underline;
   cursor: pointer;
+`;
+
+const Facebook = styled.a`
+  display: block;
+  padding: 0.5rem 0;
+  background: #fff;
+  color: #505f79;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 5px 0;
+  border-radius: 3px;
+  border-color: transparent;
+  text-align: center;
+  margin: 1.5rem 0 0.7rem;
+  cursor: pointer;
+`;
+
+const Google = styled.a`
+  display: block;
+  padding: 0.5em 0;
+  background: #fff;
+  color: #505f79;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 5px 0;
+  border-radius: 3px;
+  border-color: transparent;
+  text-align: center;
+  cursor: pointer;
+`;
+
+const OauthLogin = styled.span`
+  display: inline-block;
+  margin-left: 0.5em;
+  vertical-align: text-top;
 `;

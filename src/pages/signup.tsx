@@ -31,7 +31,7 @@ const SignUpContainer = styled.div`
     width: 100%;
     font-size: 3rem;
     text-align: center;
-    margin: 1.6em 0;
+    margin: 1.5em 0;
     font-family: 'Black Han Sans', sans-serif;
   }
 `;
