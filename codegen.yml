@@ -1,0 +1,14 @@
+overwrite: true
+schema: https://title-academy-backend.herokuapp.com/graphql
+documents: 
+  - './src/graphql/mutaions/*.ts'
+  - './src/graphql/queries/*.ts'
+generates:
+  ./src/generated/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+hooks:
+  afterOneFileWrite:
+    - prettier --write
+    - eslint --fix

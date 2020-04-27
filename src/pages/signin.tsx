@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Login from '../components/signin/Login';
+import { withApollo } from '../graphql/apollo/apollo';
 
 function SignIn() {
   return (
@@ -11,7 +12,7 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default withApollo({ ssr: true })(SignIn);
 
 const SignInContainer = styled.div`
   width: 100vw;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Register from '../components/signup/register';
+import { withApollo } from '../graphql/apollo/apollo';
 
 function SignUp() {
   return (
@@ -11,7 +12,7 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default withApollo({ ssr: true })(SignUp);
 
 const SignUpContainer = styled.div`
   width: 100vw;
