@@ -1,7 +1,7 @@
 overwrite: true
 schema: https://title-academy-backend.herokuapp.com/graphql
 documents: 
-  - './src/graphql/mutaions/*.ts'
+  - './src/graphql/mutations/*.ts'
   - './src/graphql/queries/*.ts'
 generates:
   ./src/generated/types.ts:

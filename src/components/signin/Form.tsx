@@ -2,22 +2,27 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { GrFacebook, GrGoogle } from 'react-icons/gr';
+import useSignInInputForm from '../../hooks/useSignInInputForm';
 
 function Form() {
-  const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('로그인 버튼 클릭');
-  }, []);
+  const { email, password, onChangeEmail, onChangePassword } = useSignInInputForm();
+
+  const onSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+    },
+    [email, password],
+  );
 
   return (
     <FormContainer onSubmit={onSubmit}>
       <label htmlFor="email">Email</label>
-      <input id="email" type="email" autoComplete="off" required={true} />
+      <input id="email" type="email" autoComplete="off" required={true} value={email} onChange={onChangeEmail} />
       <label htmlFor="password">
         <span>Password</span>
         <ForgotPassword>Forgot password?</ForgotPassword>
       </label>
-      <input id="password" type="password" required={true} />
+      <input id="password" type="password" required={true} value={password} onChange={onChangePassword} />
       <fieldset>
         <Link href="">
           <Facebook>

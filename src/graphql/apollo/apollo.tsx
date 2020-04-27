@@ -77,7 +77,7 @@ const initApolloClient = (initialState: any, ctx: any) => {
  * @param  {Boolean} [withApolloOptions.ssr=false]
  * @returns {(PageComponent: ReactNode) => ReactNode}
  */
-export const withApollo = ({ ssr = false } = {}) => (PageComponent: any) => {
+export const withApollo = ({ ssr = true } = {}) => (PageComponent: any) => {
   const WithApollo = ({ apolloClient, apolloState, ...pageProps }: any) => {
     let client;
     if (apolloClient) {

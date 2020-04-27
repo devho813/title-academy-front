@@ -9,7 +9,7 @@ export default function createApolloClient(initialState: any, ctx: any) {
   return new ApolloClient({
     ssrMode: Boolean(ctx),
     link: new HttpLink({
-      uri: 'https://title-academy-backend.herokuapp.com/', // Server URL (must be absolute)
+      uri: 'https://title-academy-backend.herokuapp.com/graphql', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       fetch,
     }),

@@ -136,8 +136,10 @@ export enum CacheControlScope {
   Private = 'PRIVATE',
 }
 
-export type GetUsersQueryVariables = {};
-
-export type GetUsersQuery = { __typename?: 'Query' } & {
-  users: Array<{ __typename?: 'User' } & Pick<User, 'id' | 'email' | 'nickname' | 'password'>>;
+export type AddUserMutationVariables = {
+  email: Scalars['String'];
+  nickname: Scalars['String'];
+  password: Scalars['String'];
 };
+
+export type AddUserMutation = { __typename?: 'Mutation' } & { addUser: { __typename?: 'User' } & Pick<User, 'id'> };

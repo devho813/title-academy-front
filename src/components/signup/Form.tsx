@@ -1,40 +1,77 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { GrFacebook, GrGoogle } from 'react-icons/gr';
+import useSignUpInputForm from '../../hooks/useSignUpInputForm';
+import { useMutation } from '@apollo/react-hooks';
+import { ADD_USER } from '../../graphql/mutations/auth';
+import { MutationAddUserArgs } from '../../generated/types';
 
 function Form() {
-  const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('회원가입 버튼 클릭');
-  }, []);
+  const [addUser, { error }] = useMutation<MutationAddUserArgs>(ADD_USER);
+  const {
+    email,
+    setEmail,
+    nickname,
+    password,
+    setPassword,
+    onChangeEmail,
+    onChangeNickname,
+    onChangePassword,
+  } = useSignUpInputForm();
+
+  useEffect(() => {
+    if (error) {
+      setEmail('');
+      setPassword('');
+      alert(error.graphQLErrors[0].message);
+    }
+  }, [error]);
+
+  const onSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      addUser({ variables: { email, nickname, password } });
+    },
+    [email, nickname, password],
+  );
 
   return (
-    <FormContainer onSubmit={onSubmit}>
-      <label htmlFor="email">Email</label>
-      <input id="email" type="email" autoComplete="off" required={true} />
-      <label htmlFor="nickname">Nickname</label>
-      <input id="nickname" type="text" autoComplete="off" required={true} />
-      <label htmlFor="password">Password</label>
-      <input id="password" type="password" required={true} />
-      <fieldset>
-        <input type="checkbox" id="signupEulaAgreement" required={true} />
-        <label htmlFor="signupEulaAgreement">Agree to the End User License Agreement and the Privacy Policy.</label>
-      </fieldset>
-      <Link href="">
-        <Facebook>
-          <GrFacebook />
-          <OauthLogin>Continue with Facebook</OauthLogin>
-        </Facebook>
-      </Link>
-      <Link href="">
-        <Google>
-          <GrGoogle />
-          <OauthLogin>Continue with Google</OauthLogin>
-        </Google>
-      </Link>
-      <button>Create an Account</button>
-    </FormContainer>
+    <>
+      <FormContainer onSubmit={onSubmit}>
+        <label htmlFor="email">Email</label>
+        <input id="email" type="email" autoComplete="off" required={true} value={email} onChange={onChangeEmail} />
+        <label htmlFor="nickname">Nickname</label>
+        <input
+          id="nickname"
+          type="text"
+          autoComplete="off"
+          required={true}
+          value={nickname}
+          onChange={onChangeNickname}
+        />
+        <label htmlFor="password">Password</label>
+        <input id="password" type="password" required={true} value={password} onChange={onChangePassword} />
+        <fieldset>
+          <input type="checkbox" id="signupEulaAgreement" required={true} />
+          <label htmlFor="signupEulaAgreement">Agree to the End User License Agreement and the Privacy Policy.</label>
+        </fieldset>
+        <Link href="">
+          <Facebook>
+            <GrFacebook />
+            <OauthLogin>Continue with Facebook</OauthLogin>
+          </Facebook>
+        </Link>
+        <Link href="">
+          <Google>
+            <GrGoogle />
+            <OauthLogin>Continue with Google</OauthLogin>
+          </Google>
+        </Link>
+        <button>Create an Account</button>
+      </FormContainer>
+    </>
   );
 }
 

@@ -12,7 +12,7 @@ function SignUp() {
   );
 }
 
-export default withApollo({ ssr: true })(SignUp);
+export default withApollo()(SignUp);
 
 const SignUpContainer = styled.div`
   width: 100vw;
