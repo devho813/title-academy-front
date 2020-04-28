@@ -142,4 +142,13 @@ export type AddUserMutationVariables = {
   password: Scalars['String'];
 };
 
-export type AddUserMutation = { __typename?: 'Mutation' } & { addUser: { __typename?: 'User' } & Pick<User, 'id'> };
+export type AddUserMutation = { __typename?: 'Mutation' } & {
+  addUser: { __typename?: 'User' } & Pick<User, 'email' | 'nickname'>;
+};
+
+export type LoginQueryVariables = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type LoginQuery = { __typename?: 'Query' } & { login?: Maybe<{ __typename?: 'User' } & Pick<User, 'email'>> };
