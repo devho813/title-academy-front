@@ -9,7 +9,7 @@ function Register() {
       <RegisterWrapper>
         <h2>
           <span>Sign Up</span>
-          <Link href="/signin/">
+          <Link href="/signin">
             <a>or, Login</a>
           </Link>
         </h2>

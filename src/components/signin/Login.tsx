@@ -14,8 +14,7 @@ function Login() {
         </MainCharacterContainer>
         <h2>
           <span>Sign In</span>
-          {/* TODO: path 마지막 / 제거시 오류 이슈 수정하기 */}
-          <Link href="/signup/">
+          <Link href="/signup">
             <a>Create Account</a>
           </Link>
         </h2>
