@@ -17,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body{
     font-family: 'Roboto', sans-serif;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   html, body, #__next{
     height: 100%;

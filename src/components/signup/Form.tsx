@@ -3,13 +3,10 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { GrFacebook, GrGoogle } from 'react-icons/gr';
 import useSignUpInputForm from '../../hooks/useSignUpInputForm';
-import { useMutation } from '@apollo/react-hooks';
-import { ADD_USER } from '../../graphql/mutations/auth';
-import { AddUserMutation } from '../../generated/types';
-import { useRouter } from 'next/dist/client/router';
+import useSignupForm from '../../hooks/useSignupForm';
 
 function Form() {
-  const [addUser, { error }] = useMutation<AddUserMutation>(ADD_USER);
+  const { addUser, error } = useSignupForm();
   const {
     email,
     setEmail,
@@ -20,7 +17,6 @@ function Form() {
     onChangeNickname,
     onChangePassword,
   } = useSignUpInputForm();
-  const router = useRouter();
 
   useEffect(() => {
     if (error) {
@@ -33,19 +29,7 @@ function Form() {
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-
-      addUser({
-        variables: { email, nickname, password },
-        update: (_cache, { data }) => {
-          if (data) {
-            const {
-              addUser: { nickname },
-            } = data;
-            alert(`${nickname}님, 회원가입 완료되었습니다.\n로그인 페이지로 이동합니다.`);
-            router.push('/signin');
-          }
-        },
-      });
+      addUser({ variables: { email, nickname, password } });
     },
     [email, nickname, password],
   );
