@@ -15,8 +15,6 @@ export type Query = {
   __typename?: 'Query';
   users: Array<User>;
   user?: Maybe<User>;
-  login?: Maybe<User>;
-  logout: Scalars['String'];
   posts: Array<Post>;
   post?: Maybe<Array<Maybe<Post>>>;
   postInfo?: Maybe<Array<Maybe<Post>>>;
@@ -27,11 +25,6 @@ export type Query = {
 
 export type QueryUserArgs = {
   email: Scalars['String'];
-};
-
-export type QueryLoginArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
 };
 
 export type QueryPostArgs = {
@@ -100,10 +93,9 @@ export type Image = {
 export type Mutation = {
   __typename?: 'Mutation';
   addUser: User;
-  updateUser: User;
-  addPost: Post;
-  protectedAction?: Maybe<Scalars['String']>;
-  imageUpload?: Maybe<Array<Maybe<Image>>>;
+  login?: Maybe<LoginUser>;
+  logout: Scalars['Boolean'];
+  tokenReissue: Scalars['String'];
 };
 
 export type MutationAddUserArgs = {
@@ -112,23 +104,21 @@ export type MutationAddUserArgs = {
   password: Scalars['String'];
 };
 
-export type MutationUpdateUserArgs = {
-  nickname?: Maybe<Scalars['String']>;
-  password?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  profile?: Maybe<Scalars['String']>;
+export type MutationLoginArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
-export type MutationAddPostArgs = {
-  category: Scalars['String'];
-  subject: Scalars['String'];
-  content?: Maybe<Scalars['String']>;
-  src?: Maybe<Scalars['String']>;
+export type MutationTokenReissueArgs = {
+  accessToken: Scalars['String'];
+  refreshToken: Scalars['String'];
 };
 
-export type MutationImageUploadArgs = {
-  PostId: Scalars['Int'];
-  src: Scalars['String'];
+export type LoginUser = {
+  __typename?: 'LoginUser';
+  user: User;
+  accessToken: Scalars['String'];
+  refreshToken: Scalars['String'];
 };
 
 export enum CacheControlScope {
@@ -146,9 +136,15 @@ export type AddUserMutation = { __typename?: 'Mutation' } & {
   addUser: { __typename?: 'User' } & Pick<User, 'email' | 'nickname'>;
 };
 
-export type LoginQueryVariables = {
+export type LoginMutationVariables = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
 
-export type LoginQuery = { __typename?: 'Query' } & { login?: Maybe<{ __typename?: 'User' } & Pick<User, 'email'>> };
+export type LoginMutation = { __typename?: 'Mutation' } & {
+  login?: Maybe<
+    { __typename?: 'LoginUser' } & Pick<LoginUser, 'accessToken'> & {
+        user: { __typename?: 'User' } & Pick<User, 'nickname'>;
+      }
+  >;
+};

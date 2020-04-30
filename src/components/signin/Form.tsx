@@ -2,14 +2,35 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { GrFacebook, GrGoogle } from 'react-icons/gr';
-import useSignInInputForm from '../../hooks/useSignInInputForm';
+import useSignInInput from '../../hooks/useSignInInput';
+import { useEffect } from 'react';
+import useSignInForm from '../../hooks/useSignInForm';
+import Router from 'next/router';
 
 function Form() {
-  const { email, password, onChangeEmail, onChangePassword } = useSignInInputForm();
+  const { email, setEmail, password, setPassword, onChangeEmail, onChangePassword } = useSignInInput();
+  const { login, error } = useSignInForm();
+
+  useEffect(() => {
+    if (error) {
+      setEmail('');
+      setPassword('');
+      alert(error.graphQLErrors[0].message);
+    }
+  }, [error]);
 
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      login({
+        variables: { email, password },
+        update: (_cache, { data }) => {
+          if (data) {
+            alert(`${data.login?.user.nickname}님, 로그인 완료되었습니다.\n메인 페이지로 이동합니다.`);
+            Router.push('/');
+          }
+        },
+      });
     },
     [email, password],
   );

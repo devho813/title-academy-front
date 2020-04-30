@@ -1,15 +1,11 @@
 import { useState, useCallback } from 'react';
 
-function useSignUpInputForm() {
+function useSignInInput() {
   const [email, setEmail] = useState('');
-  const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
 
   const onChangeEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-  }, []);
-  const onChangeNickname = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickname(e.target.value);
   }, []);
   const onChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -18,14 +14,11 @@ function useSignUpInputForm() {
   return {
     email,
     setEmail,
-    nickname,
-    setNickname,
     password,
     setPassword,
     onChangeEmail,
-    onChangeNickname,
     onChangePassword,
   };
 }
 
-export default useSignUpInputForm;
+export default useSignInInput;

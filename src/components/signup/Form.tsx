@@ -2,8 +2,9 @@ import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { GrFacebook, GrGoogle } from 'react-icons/gr';
-import useSignUpInputForm from '../../hooks/useSignUpInputForm';
+import useSignUpInput from '../../hooks/useSignUpInput';
 import useSignupForm from '../../hooks/useSignupForm';
+import Router from 'next/router';
 
 function Form() {
   const { addUser, error } = useSignupForm();
@@ -16,7 +17,7 @@ function Form() {
     onChangeEmail,
     onChangeNickname,
     onChangePassword,
-  } = useSignUpInputForm();
+  } = useSignUpInput();
 
   useEffect(() => {
     if (error) {
@@ -29,7 +30,16 @@ function Form() {
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      addUser({ variables: { email, nickname, password } });
+      addUser({
+        variables: { email, nickname, password },
+        update: (_cache, { data }) => {
+          if (data) {
+            // TODO: 쿠키에 받은 액세스 토큰 저장하기
+            alert(`${data.addUser.nickname}님, 회원가입 완료되었습니다.\n로그인 페이지로 이동합니다.`);
+            Router.push('/signin');
+          }
+        },
+      });
     },
     [email, nickname, password],
   );
