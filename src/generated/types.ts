@@ -15,12 +15,10 @@ export type Query = {
   __typename?: 'Query';
   users: Array<User>;
   user?: Maybe<User>;
-  posts: Array<Post>;
-  post?: Maybe<Array<Maybe<Post>>>;
-  postInfo?: Maybe<Array<Maybe<Post>>>;
-  comments?: Maybe<Array<Maybe<Comment>>>;
-  comment?: Maybe<Array<Maybe<Comment>>>;
-  image?: Maybe<Array<Maybe<Image>>>;
+  posts?: Maybe<Array<Post>>;
+  post?: Maybe<Post>;
+  forgotPassword: Scalars['String'];
+  authCode: User;
 };
 
 export type QueryUserArgs = {
@@ -28,28 +26,19 @@ export type QueryUserArgs = {
 };
 
 export type QueryPostArgs = {
-  UserId: Scalars['Int'];
-};
-
-export type QueryPostInfoArgs = {
   PostId: Scalars['Int'];
 };
 
-export type QueryCommentsArgs = {
-  PostId: Scalars['Int'];
+export type QueryForgotPasswordArgs = {
+  email: Scalars['String'];
 };
 
-export type QueryCommentArgs = {
-  UserId: Scalars['Int'];
-};
-
-export type QueryImageArgs = {
-  PostId: Scalars['Int'];
+export type QueryAuthCodeArgs = {
+  authCode: Scalars['String'];
 };
 
 export type User = {
   __typename?: 'User';
-  id: Scalars['Int'];
   email: Scalars['String'];
   nickname: Scalars['String'];
   password: Scalars['String'];
@@ -59,7 +48,6 @@ export type User = {
 
 export type Post = {
   __typename?: 'Post';
-  id: Scalars['Int'];
   category: Scalars['String'];
   subject: Scalars['String'];
   content: Scalars['String'];
@@ -70,32 +58,14 @@ export type Post = {
   UserId: Scalars['Int'];
 };
 
-export type Comment = {
-  __typename?: 'Comment';
-  id: Scalars['Int'];
-  content: Scalars['String'];
-  createdAt: Scalars['DATE'];
-  updatedAt: Scalars['DATE'];
-  UserId: Scalars['Int'];
-  PostId: Scalars['Int'];
-};
-
-export type Image = {
-  __typename?: 'Image';
-  id: Scalars['Int'];
-  UserId: Scalars['Int'];
-  src: Scalars['String'];
-  createdAt: Scalars['DATE'];
-  updatedAt: Scalars['DATE'];
-  PostId: Scalars['Int'];
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   addUser: User;
   login?: Maybe<LoginUser>;
-  logout: Scalars['Boolean'];
+  logout: Scalars['String'];
   tokenReissue: Scalars['String'];
+  userInfoModifed: Scalars['String'];
+  addPost: PostInfo;
 };
 
 export type MutationAddUserArgs = {
@@ -114,11 +84,46 @@ export type MutationTokenReissueArgs = {
   refreshToken: Scalars['String'];
 };
 
+export type MutationUserInfoModifedArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type MutationAddPostArgs = {
+  category: Scalars['String'];
+  subject: Scalars['String'];
+  content: Scalars['String'];
+  image?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
 export type LoginUser = {
   __typename?: 'LoginUser';
   user: User;
   accessToken: Scalars['String'];
   refreshToken: Scalars['String'];
+};
+
+export type PostInfo = {
+  __typename?: 'PostInfo';
+  post: Post;
+  image?: Maybe<Array<Maybe<Image>>>;
+};
+
+export type Image = {
+  __typename?: 'Image';
+  UserId: Scalars['Int'];
+  src: Scalars['String'];
+  createdAt: Scalars['DATE'];
+  updatedAt: Scalars['DATE'];
+};
+
+export type Comment = {
+  __typename?: 'Comment';
+  content: Scalars['String'];
+  createdAt: Scalars['DATE'];
+  updatedAt: Scalars['DATE'];
+  UserId: Scalars['Int'];
+  PostId: Scalars['Int'];
 };
 
 export enum CacheControlScope {
@@ -143,7 +148,7 @@ export type LoginMutationVariables = {
 
 export type LoginMutation = { __typename?: 'Mutation' } & {
   login?: Maybe<
-    { __typename?: 'LoginUser' } & Pick<LoginUser, 'accessToken'> & {
+    { __typename?: 'LoginUser' } & Pick<LoginUser, 'accessToken' | 'refreshToken'> & {
         user: { __typename?: 'User' } & Pick<User, 'nickname'>;
       }
   >;

@@ -4,6 +4,8 @@ import { HttpLink } from 'apollo-link-http';
 import fetch from 'isomorphic-unfetch';
 
 export default function createApolloClient(initialState: any, ctx: any) {
+  const token = 'accessToken';
+
   // The `ctx` (NextPageContext) will only be present on the server.
   // use it to extract auth headers (ctx.req) or similar.
   return new ApolloClient({
@@ -12,6 +14,9 @@ export default function createApolloClient(initialState: any, ctx: any) {
       uri: 'https://title-academy-backend.herokuapp.com/graphql', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       fetch,
+      headers: {
+        authorization: token ? `Bearer ${token}` : '',
+      },
     }),
     cache: new InMemoryCache().restore(initialState),
   });

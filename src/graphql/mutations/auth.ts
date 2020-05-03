@@ -16,6 +16,7 @@ export const LOGIN_MUTATION = gql`
         nickname
       }
       accessToken
+      refreshToken
     }
   }
 `;

@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { GrFacebook, GrGoogle } from 'react-icons/gr';
 import useSignUpInput from '../../hooks/useSignUpInput';
 import useSignupForm from '../../hooks/useSignupForm';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 function Form() {
+  const router = useRouter();
   const { addUser, error } = useSignupForm();
   const {
     email,
@@ -34,9 +35,8 @@ function Form() {
         variables: { email, nickname, password },
         update: (_cache, { data }) => {
           if (data) {
-            // TODO: 쿠키에 받은 액세스 토큰 저장하기
             alert(`${data.addUser.nickname}님, 회원가입 완료되었습니다.\n로그인 페이지로 이동합니다.`);
-            Router.push('/signin');
+            router.push('/signin');
           }
         },
       });
