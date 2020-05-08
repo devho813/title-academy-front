@@ -6,7 +6,7 @@ function Header() {
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <h1>제목 확원</h1>
+        {/* <h1>제목 학원</h1> */}
         <SearchForm />
       </HeaderWrapper>
     </HeaderContainer>

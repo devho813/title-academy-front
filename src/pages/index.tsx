@@ -1,14 +1,15 @@
 import React from 'react';
 import { withApollo } from '../graphql/apollo/apollo';
-import withAuth from '../utils/withAuth';
 import Header from '../components/gnb/Header';
+import Board from '../components/board/Board';
 
 function Home() {
   return (
     <>
       <Header />
+      <Board />
     </>
   );
 }
 
-export default withApollo()(withAuth(Home));
+export default withApollo()(Home);
