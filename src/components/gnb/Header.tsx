@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
+import Auth from './Auth';
 
 function Header() {
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        {/* <h1>제목 학원</h1> */}
+        <h1>제목 학원</h1>
         <SearchForm />
+        <Auth />
       </HeaderWrapper>
     </HeaderContainer>
   );
@@ -18,7 +20,6 @@ export default Header;
 const headerHeight = '4.5rem';
 
 const HeaderContainer = styled.header`
-  width: 100vw;
   height: ${headerHeight};
   border-bottom: 1px solid #e8e8e8;
 `;
@@ -29,7 +30,6 @@ const HeaderWrapper = styled.div`
   height: 100%;
   margin: 0 auto;
   padding: 0.8rem 0;
-  text-align: center;
 
   h1 {
     position: absolute;
