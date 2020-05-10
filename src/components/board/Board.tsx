@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
 
 function Board() {
   return (
@@ -8,9 +7,7 @@ function Board() {
       <BoardWrapper>
         <Header>
           <h2>게시판</h2>
-          <Link href="/write">
-            <button>게시글 쓰기</button>
-          </Link>
+          <button>게시글 쓰기</button>
         </Header>
         <ul>
           <li>
