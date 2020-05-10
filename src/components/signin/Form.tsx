@@ -5,11 +5,12 @@ import { GrFacebook, GrGoogle } from 'react-icons/gr';
 import useSignInInput from '../../hooks/useSignInInput';
 import { useEffect } from 'react';
 import useSignInForm from '../../hooks/useSignInForm';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 function Form() {
   const { email, setEmail, password, setPassword, onChangeEmail, onChangePassword } = useSignInInput();
   const { login, error } = useSignInForm();
+  const router = useRouter();
 
   useEffect(() => {
     if (error) {
@@ -26,7 +27,7 @@ function Form() {
         variables: { email, password },
         update: (_cache, { data }) => {
           if (data) {
-            Router.push('/');
+            router.push('/');
           }
         },
       });
