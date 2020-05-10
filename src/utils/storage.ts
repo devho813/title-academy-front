@@ -1,5 +1,9 @@
 export function getToken() {
-  return typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  return localStorage.getItem('accessToken');
 }
 
 export function setToken(accessToken: string, refreshToken: string) {
