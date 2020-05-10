@@ -153,3 +153,7 @@ export type LoginMutation = { __typename?: 'Mutation' } & {
       }
   >;
 };
+
+export type LogoutMutationVariables = {};
+
+export type LogoutMutation = { __typename?: 'Mutation' } & Pick<Mutation, 'logout'>;

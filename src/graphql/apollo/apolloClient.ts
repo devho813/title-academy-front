@@ -2,9 +2,10 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import fetch from 'isomorphic-unfetch';
+import { getToken } from '../../utils/storage';
 
 export default function createApolloClient(initialState: any, ctx: any) {
-  const token = 'accessToken';
+  const token = getToken();
 
   // The `ctx` (NextPageContext) will only be present on the server.
   // use it to extract auth headers (ctx.req) or similar.
@@ -15,7 +16,7 @@ export default function createApolloClient(initialState: any, ctx: any) {
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       fetch,
       headers: {
-        authorization: token ? `Bearer ${token}` : '',
+        Authorization: token ? `Bearer ${token}` : '',
       },
     }),
     cache: new InMemoryCache().restore(initialState),

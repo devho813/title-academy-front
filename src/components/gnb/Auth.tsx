@@ -4,12 +4,12 @@ import Link from 'next/link';
 import useAuth from '../../hooks/useAuth';
 
 function Auth() {
-  const { isLogin } = useAuth();
+  const { isLogin, onLogout } = useAuth();
 
   return (
     <AuthContainer>
       {isLogin ? (
-        <Logout>Logout</Logout>
+        <Logout onClick={onLogout}>Logout</Logout>
       ) : (
         <Link href="/signin">
           <button>REGISTER / LOG IN</button>
@@ -31,7 +31,12 @@ const AuthContainer = styled.aside`
     padding: 1.1em 1.5em;
     font-size: 0.8rem;
     border: 1px solid #cccccc;
+    transition: opacity 0.15s ease-in;
     cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+    }
   }
 `;
 

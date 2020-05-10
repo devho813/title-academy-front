@@ -10,3 +10,12 @@ export function setToken(accessToken: string, refreshToken: string) {
   localStorage.setItem('accessToken', accessToken);
   localStorage.setItem('refreshToken', refreshToken);
 }
+
+export function removeToken() {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
+}
