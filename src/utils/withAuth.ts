@@ -1,10 +1,8 @@
-export default function withAuth(AuthComponent: any) {
-  if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('accessToken');
+import { getToken } from './storage';
 
-    if (!token) {
-      location.href = '/signin';
-    }
+export default function withAuth(AuthComponent: any) {
+  if (getToken() === undefined) {
+    location.href = '/signin';
   }
 
   return AuthComponent;

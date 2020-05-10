@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import SearchForm from './SearchForm';
-import Auth from './Auth';
+import dynamic from 'next/dynamic';
+const Auth = dynamic(() => import('./Auth'), { ssr: false });
 
 function Header() {
   return (

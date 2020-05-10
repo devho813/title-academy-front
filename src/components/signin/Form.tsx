@@ -26,16 +26,6 @@ function Form() {
         variables: { email, password },
         update: (_cache, { data }) => {
           if (data) {
-            const {
-              user: { nickname },
-              accessToken,
-              refreshToken,
-            } = data.login!;
-
-            localStorage.setItem('accessToken', accessToken);
-            localStorage.setItem('refreshToken', refreshToken);
-
-            alert(`${nickname}님, 로그인 완료되었습니다.\n메인 페이지로 이동합니다.`);
             Router.push('/');
           }
         },

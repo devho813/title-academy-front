@@ -1,14 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import useAuth from '../../hooks/useAuth';
 
 function Auth() {
+  const { isLogin } = useAuth();
+
   return (
     <AuthContainer>
-      <Link href="/signin">
-        <button>REGISTER / LOG IN</button>
-      </Link>
-      {/* <Logout>Logout</Logout> */}
+      {isLogin ? (
+        <Logout>Logout</Logout>
+      ) : (
+        <Link href="/signin">
+          <button>REGISTER / LOG IN</button>
+        </Link>
+      )}
     </AuthContainer>
   );
 }
@@ -29,7 +35,7 @@ const AuthContainer = styled.aside`
   }
 `;
 
-// const Logout = styled.button`
-//   font-size: 1rem !important;
-//   padding: 0.8em 1.5em !important;
-// `;
+const Logout = styled.button`
+  font-size: 0.9rem !important;
+  padding: 0.9em 1.5em !important;
+`;
