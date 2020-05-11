@@ -39,7 +39,9 @@ function Form() {
       <input id="email" type="email" autoComplete="off" required={true} value={email} onChange={onChangeEmail} />
       <label htmlFor="password">
         <span>Password</span>
-        <ForgotPassword>Forgot password?</ForgotPassword>
+        <Link href="/forgot">
+          <ForgotPassword>Forgot password?</ForgotPassword>
+        </Link>
       </label>
       <input id="password" type="password" required={true} value={password} onChange={onChangePassword} />
       <fieldset>
