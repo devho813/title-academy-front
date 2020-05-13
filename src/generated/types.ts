@@ -15,18 +15,16 @@ export type Query = {
   __typename?: 'Query';
   users: Array<User>;
   user?: Maybe<User>;
-  posts?: Maybe<Array<Post>>;
-  post?: Maybe<Post>;
   forgotPassword: Scalars['String'];
   authCode: User;
+  posts: Array<Maybe<Post>>;
+  post: Post;
+  comment: Array<Maybe<Comment>>;
+  image: Array<Maybe<Image>>;
 };
 
 export type QueryUserArgs = {
   email: Scalars['String'];
-};
-
-export type QueryPostArgs = {
-  PostId: Scalars['Int'];
 };
 
 export type QueryForgotPasswordArgs = {
@@ -35,6 +33,18 @@ export type QueryForgotPasswordArgs = {
 
 export type QueryAuthCodeArgs = {
   authCode: Scalars['String'];
+};
+
+export type QueryPostArgs = {
+  PostId: Scalars['Int'];
+};
+
+export type QueryCommentArgs = {
+  PostId: Scalars['Int'];
+};
+
+export type QueryImageArgs = {
+  PostId: Scalars['Int'];
 };
 
 export type User = {
@@ -58,6 +68,23 @@ export type Post = {
   UserId: Scalars['Int'];
 };
 
+export type Comment = {
+  __typename?: 'Comment';
+  content: Scalars['String'];
+  createdAt: Scalars['DATE'];
+  updatedAt: Scalars['DATE'];
+  UserId: Scalars['Int'];
+  PostId: Scalars['Int'];
+};
+
+export type Image = {
+  __typename?: 'Image';
+  UserId: Scalars['Int'];
+  src: Scalars['String'];
+  createdAt: Scalars['DATE'];
+  updatedAt: Scalars['DATE'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addUser: User;
@@ -65,7 +92,8 @@ export type Mutation = {
   logout: Scalars['String'];
   tokenReissue: Scalars['String'];
   userInfoModifed: Scalars['String'];
-  addPost: PostInfo;
+  addPost: Scalars['String'];
+  addComment: Comment;
 };
 
 export type MutationAddUserArgs = {
@@ -93,7 +121,12 @@ export type MutationAddPostArgs = {
   category: Scalars['String'];
   subject: Scalars['String'];
   content: Scalars['String'];
-  image?: Maybe<Array<Maybe<Scalars['String']>>>;
+  file?: Maybe<Scalars['Upload']>;
+};
+
+export type MutationAddCommentArgs = {
+  PostId: Scalars['Int'];
+  content: Scalars['String'];
 };
 
 export type LoginUser = {
@@ -106,24 +139,15 @@ export type LoginUser = {
 export type PostInfo = {
   __typename?: 'PostInfo';
   post: Post;
-  image?: Maybe<Array<Maybe<Image>>>;
+  image: Image;
+  comment: Comment;
 };
 
-export type Image = {
-  __typename?: 'Image';
-  UserId: Scalars['Int'];
-  src: Scalars['String'];
-  createdAt: Scalars['DATE'];
-  updatedAt: Scalars['DATE'];
-};
-
-export type Comment = {
-  __typename?: 'Comment';
-  content: Scalars['String'];
-  createdAt: Scalars['DATE'];
-  updatedAt: Scalars['DATE'];
-  UserId: Scalars['Int'];
-  PostId: Scalars['Int'];
+export type File = {
+  __typename?: 'File';
+  filename: Scalars['String'];
+  mimetype: Scalars['String'];
+  encoding: Scalars['String'];
 };
 
 export enum CacheControlScope {
@@ -157,3 +181,9 @@ export type LoginMutation = { __typename?: 'Mutation' } & {
 export type LogoutMutationVariables = {};
 
 export type LogoutMutation = { __typename?: 'Mutation' } & Pick<Mutation, 'logout'>;
+
+export type ForgotPasswordQueryVariables = {
+  email: Scalars['String'];
+};
+
+export type ForgotPasswordQuery = { __typename?: 'Query' } & Pick<Query, 'forgotPassword'>;

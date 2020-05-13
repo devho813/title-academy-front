@@ -1,21 +1,22 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import useForgotForm from '../../hooks/useForgotForm';
 
 function Form() {
-  const [email, setEmail] = useState('');
-  const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  }, []);
-
-  const onChangeEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  }, []);
+  const { email, onChangeEmail, onSubmit, successSubmitEmail } = useForgotForm();
 
   return (
     <FormContainer onSubmit={onSubmit}>
-      <label htmlFor="email">Your email</label>
-      <input id="email" type="email" required={true} value={email} onChange={onChangeEmail} />
-      <button>email me a recovery link</button>
+      {successSubmitEmail ? (
+        <SuccessMessage>An email has been sent. Please click the link when you get it.</SuccessMessage>
+      ) : (
+        <>
+          <p>Don{"'"}t worry, happens to the best of us.</p>
+          <label htmlFor="email">Your email</label>
+          <input id="email" type="email" required={true} value={email} onChange={onChangeEmail} autoComplete="off" />
+          <button>email me a recovery link</button>
+        </>
+      )}
     </FormContainer>
   );
 }
@@ -24,6 +25,12 @@ export default Form;
 
 const FormContainer = styled.form`
   width: 100%;
+
+  p {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.9rem;
+    margin: 1rem 0;
+  }
 
   label {
     position: relative;
@@ -58,4 +65,8 @@ const FormContainer = styled.form`
     border-radius: 5px;
     cursor: pointer;
   }
+`;
+
+const SuccessMessage = styled.p`
+  margin: 1.5rem 0 0.5rem !important;
 `;
