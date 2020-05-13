@@ -80,7 +80,7 @@ const FormContainer = styled.form`
     width: 100%;
     margin-bottom: 0.7rem;
     padding: 0.5em;
-    font-size: 1rem;
+    font-size: 0.9rem;
     border: 0.8px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 

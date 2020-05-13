@@ -1,10 +1,11 @@
 import React from 'react';
 import AuthLayout from '../components/common/AuthLayout';
+import Forgot from '../components/forgot/Forgot';
 
 function forgot() {
   return (
     <AuthLayout>
-      <h1>Forgot Page</h1>
+      <Forgot />
     </AuthLayout>
   );
 }

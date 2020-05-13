@@ -1,5 +1,5 @@
 import React from 'react';
-import Register from '../components/signup/register';
+import Register from '../components/signup/Register';
 import { withApollo } from '../graphql/apollo/apollo';
 import AuthLayout from '../components/common/AuthLayout';
 

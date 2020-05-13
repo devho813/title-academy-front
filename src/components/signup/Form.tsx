@@ -45,40 +45,38 @@ function Form() {
   );
 
   return (
-    <>
-      <FormContainer onSubmit={onSubmit}>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" autoComplete="off" required={true} value={email} onChange={onChangeEmail} />
-        <label htmlFor="nickname">Nickname</label>
-        <input
-          id="nickname"
-          type="text"
-          autoComplete="off"
-          required={true}
-          value={nickname}
-          onChange={onChangeNickname}
-        />
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password" required={true} value={password} onChange={onChangePassword} />
-        <fieldset>
-          <input type="checkbox" id="signupEulaAgreement" required={true} />
-          <label htmlFor="signupEulaAgreement">Agree to the End User License Agreement and the Privacy Policy.</label>
-        </fieldset>
-        <Link href="">
-          <Facebook>
-            <GrFacebook />
-            <OauthLogin>Continue with Facebook</OauthLogin>
-          </Facebook>
-        </Link>
-        <Link href="">
-          <Google>
-            <GrGoogle />
-            <OauthLogin>Continue with Google</OauthLogin>
-          </Google>
-        </Link>
-        <button>Create an Account</button>
-      </FormContainer>
-    </>
+    <FormContainer onSubmit={onSubmit}>
+      <label htmlFor="email">Email</label>
+      <input id="email" type="email" autoComplete="off" required={true} value={email} onChange={onChangeEmail} />
+      <label htmlFor="nickname">Nickname</label>
+      <input
+        id="nickname"
+        type="text"
+        autoComplete="off"
+        required={true}
+        value={nickname}
+        onChange={onChangeNickname}
+      />
+      <label htmlFor="password">Password</label>
+      <input id="password" type="password" required={true} value={password} onChange={onChangePassword} />
+      <fieldset>
+        <input type="checkbox" id="signupEulaAgreement" required={true} />
+        <label htmlFor="signupEulaAgreement">Agree to the End User License Agreement and the Privacy Policy.</label>
+      </fieldset>
+      <Link href="">
+        <Facebook>
+          <GrFacebook />
+          <OauthLogin>Continue with Facebook</OauthLogin>
+        </Facebook>
+      </Link>
+      <Link href="">
+        <Google>
+          <GrGoogle />
+          <OauthLogin>Continue with Google</OauthLogin>
+        </Google>
+      </Link>
+      <button>Create an Account</button>
+    </FormContainer>
   );
 }
 
@@ -99,7 +97,7 @@ const FormContainer = styled.form`
     width: 100%;
     margin-bottom: 0.7rem;
     padding: 0.5em;
-    font-size: 1rem;
+    font-size: rem;
     border: 0.8px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 

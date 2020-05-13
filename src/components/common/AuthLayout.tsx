@@ -8,7 +8,7 @@ type Props = {
 function AuthLayout({ children }: Props) {
   return (
     <AuthLayoutContainer>
-      <h1>제목 학원</h1>
+      <h1>Title Academy</h1>
       <BoxContainer>{children}</BoxContainer>
     </AuthLayoutContainer>
   );

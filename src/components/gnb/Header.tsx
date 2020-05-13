@@ -8,7 +8,7 @@ function Header() {
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <h1>제목 학원</h1>
+        <h1>Title Academy</h1>
         <SearchForm />
         <Auth />
       </HeaderWrapper>
