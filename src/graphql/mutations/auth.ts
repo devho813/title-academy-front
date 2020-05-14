@@ -26,3 +26,9 @@ export const LOGOUT_MUTATION = gql`
     logout
   }
 `;
+
+export const USER_INFO_MODIFED_MUTATION = gql`
+  mutation UserInfoModifed($email: String!, $password: String!) {
+    userInfoModifed(email: $email, password: $password)
+  }
+`;

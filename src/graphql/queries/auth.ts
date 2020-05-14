@@ -5,3 +5,11 @@ export const FORGOT_PASSWORD_QUERY = gql`
     forgotPassword(email: $email)
   }
 `;
+
+export const AUTH_CODE_QUERY = gql`
+  query AuthCode($authCode: String!) {
+    authCode(authCode: $authCode) {
+      email
+    }
+  }
+`;
