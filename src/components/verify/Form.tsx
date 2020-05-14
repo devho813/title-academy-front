@@ -19,7 +19,7 @@ function Form({ email }: Props) {
   return (
     <FormContainer onSubmit={onSubmit}>
       <label htmlFor="email">Email</label>
-      <input id="email" type="email" required={true} value={email || ''} disabled />
+      <input id="email" type="email" required={true} value={email} disabled />
       <label htmlFor="password">New password</label>
       <input
         id="password"

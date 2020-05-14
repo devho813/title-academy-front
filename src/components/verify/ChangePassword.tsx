@@ -6,7 +6,7 @@ type Props = {
   email?: string;
 };
 
-function ChangePassword({ email }: Props) {
+function ChangePassword({ email = '' }: Props) {
   return (
     <ChangePasswordContainer>
       <h2>Change Password</h2>
