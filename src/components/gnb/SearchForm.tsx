@@ -17,9 +17,9 @@ export default SearchForm;
 const Form = styled.form`
   position: relative;
   display: inline-block;
-  width: calc(100% - 25rem);
+  width: calc(100% - 31rem);
   height: 100%;
-  margin-left: 10rem;
+  margin-left: 19rem;
 
   input {
     width: 100%;

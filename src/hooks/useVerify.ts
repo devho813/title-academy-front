@@ -3,7 +3,7 @@ import { AUTH_CODE_QUERY } from './../graphql/queries/auth';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { useEffect } from 'react';
 
-export default function useVerify(authCode?: string) {
+export default function useVerify(authCode: string) {
   const [authCodeQuery, { data, error }] = useLazyQuery<AuthCodeQuery, AuthCodeQueryVariables>(AUTH_CODE_QUERY);
   const email = data?.authCode.email;
 

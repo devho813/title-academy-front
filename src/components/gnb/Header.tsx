@@ -27,7 +27,7 @@ const HeaderContainer = styled.header`
 
 const HeaderWrapper = styled.div`
   position: relative;
-  width: 80%;
+  width: 90%;
   height: 100%;
   margin: 0 auto;
   padding: 0.8rem 0;

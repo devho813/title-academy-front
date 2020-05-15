@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 type Props = {
@@ -14,7 +14,7 @@ function AuthLayout({ children }: Props) {
   );
 }
 
-export default AuthLayout;
+export default memo(AuthLayout);
 
 const AuthLayoutContainer = styled.div`
   width: 100vw;
