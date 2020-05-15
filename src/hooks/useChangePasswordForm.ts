@@ -2,10 +2,19 @@ import { UserInfoModifedMutation, UserInfoModifedMutationVariables } from './../
 import { USER_INFO_MODIFED_MUTATION } from './../graphql/mutations/auth';
 import { useCallback, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 
 export default function useChangePasswordForm(email?: string) {
-  const [changePassword] = useMutation<UserInfoModifedMutation, UserInfoModifedMutationVariables>(
+  const router = useRouter();
+  const [passwordMutation] = useMutation<UserInfoModifedMutation, UserInfoModifedMutationVariables>(
     USER_INFO_MODIFED_MUTATION,
+    {
+      onCompleted: (data) => {
+        if (data) {
+          router.push('/verify/success');
+        }
+      },
+    },
   );
 
   const [password, setPassword] = useState('');
@@ -30,8 +39,7 @@ export default function useChangePasswordForm(email?: string) {
       }
 
       if (email) {
-        changePassword({ variables: { email, password } });
-        // TODO: 패스워드 변경 완료페이지 라우팅 처리
+        passwordMutation({ variables: { email, password } });
       } else {
         throw new Error("doesn't exist email");
       }
@@ -39,5 +47,14 @@ export default function useChangePasswordForm(email?: string) {
     [password, verifyPassword],
   );
 
-  return { onSubmit, password, onChangePassword, verifyPassword, onChangeVerifyPassword, passwordMatchingError };
+  return {
+    passwordMutation,
+    password,
+    onChangePassword,
+    verifyPassword,
+    onChangeVerifyPassword,
+    passwordMatchingError,
+    setPasswordMatchingError,
+    onSubmit,
+  };
 }

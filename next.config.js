@@ -20,6 +20,7 @@ module.exports = withBundleAnalyzer(
         '/signup': { page: '/signup' },
         '/forgot': { page: '/forgot' },
         '/verify': { page: '/verify' },
+        '/verify/success': { page: '/verify/success' },
       }
     },
     webpack: function (config) {

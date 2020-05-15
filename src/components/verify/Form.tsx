@@ -8,12 +8,12 @@ type Props = {
 
 function Form({ email }: Props) {
   const {
-    onSubmit,
     password,
     onChangePassword,
     verifyPassword,
     onChangeVerifyPassword,
     passwordMatchingError,
+    onSubmit,
   } = useChangePasswordForm(email);
 
   return (
