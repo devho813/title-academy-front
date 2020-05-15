@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 type Props = {
   children: JSX.Element;
@@ -8,7 +9,9 @@ type Props = {
 function AuthLayout({ children }: Props) {
   return (
     <AuthLayoutContainer>
-      <h1>Title Academy</h1>
+      <Link href="/">
+        <h1>Title Academy</h1>
+      </Link>
       <BoxContainer>{children}</BoxContainer>
     </AuthLayoutContainer>
   );
@@ -36,6 +39,7 @@ const AuthLayoutContainer = styled.div`
     text-align: center;
     margin: 1.5em 0;
     font-family: 'Black Han Sans', sans-serif;
+    cursor: pointer;
   }
 `;
 

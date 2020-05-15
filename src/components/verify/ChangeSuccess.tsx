@@ -48,5 +48,10 @@ const ChangeSuccessContainer = styled.section`
     padding: 0.5em 0;
     border-radius: 5px;
     cursor: pointer;
+
+    :hover {
+      color: black;
+      box-shadow: 2px 2px 3px rgba(22, 22, 22, 0.2) inset;
+    }
   }
 `;
