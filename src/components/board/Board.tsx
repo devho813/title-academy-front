@@ -9,7 +9,8 @@ function Board() {
           <h2>게시판</h2>
           <button>게시글 쓰기</button>
         </Header>
-        <ul>
+        {/* <ul>
+          <li></li>
           <li>
             제목: subject / 추천수: recommend / 작성자: UserId / 내용: content / 카테고리: category / 시간: createdAt
           </li>
@@ -22,10 +23,7 @@ function Board() {
           <li>
             제목: subject / 추천수: recommend / 작성자: UserId / 내용: content / 카테고리: category / 시간: createdAt
           </li>
-          <li>
-            제목: subject / 추천수: recommend / 작성자: UserId / 내용: content / 카테고리: category / 시간: createdAt
-          </li>
-        </ul>
+        </ul> */}
       </BoardWrapper>
     </BoardContainer>
   );
